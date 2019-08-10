@@ -1,18 +1,16 @@
 import socket
 
-# ip = '192.168.56.1'
-# port = 7000
-ip = input("Digite o IP do servidor: ")
-port = input("Digite a porta: ")
-addr = ((ip, port))
+ip = socket.gethostbyname(socket.gethostname())
+port = input("Port: ")
+addr = ((ip, int(port)))
 
 udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 while True:
-    msg = input('Digite o comando desejado: UPTIME\nREQNUM\nCLOSE')
-    udp.sendto(msg.encode(), (ip, port))
-    print('Mensagem enviada!\n')
+    msg = input('\nWhat are you want?\nUPTIME: Time the server is active\nREQNUM: Number of requests\nCLOSE: Finish connection\n: ')
+    udp.sendto(msg.encode(), addr)
+    print('\nMessage sent!')
     if(msg == 'CLOSE'):
-        print('Encerrando conexao...')
+        print('Finishing connection...')
         break
 udp.close()

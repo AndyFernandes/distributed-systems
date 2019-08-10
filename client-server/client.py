@@ -1,10 +1,8 @@
 import socket
 
-# ip = '192.168.56.1'
-# port = 7000
-ip = input("Digite o IP do servidor: ")
-port = input("Digite a porta: ")
-addr = ((ip, port))
+ip = socket.gethostbyname(socket.gethostname())
+port = input("Port: ")
+addr = ((ip, int(port)))
 
 # Instancia o SOCKET
 # 1o PARAMETRO: socket.AF_INET: Familia do protocolo
@@ -13,11 +11,11 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(addr)
 
 while True:
-    msg = input('Digite o comando desejado:\nUPTIME\nREQNUM\nCLOSE\n')
+    msg = input('\nWhat are you want?\nUPTIME: Time the server is active\nREQNUM: Number of requests\nCLOSE: Finish connection\n: ')
     client_socket.send(msg.encode())
-    print('Mensagem enviada!\n')
+    print('\nMessage sent!')
     if(msg == 'CLOSE'):
-        print('Encerrando conexao...')
+        print('Finishing connection...')
         break
 client_socket.close()
 
