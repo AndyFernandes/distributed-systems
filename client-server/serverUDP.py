@@ -20,9 +20,9 @@ while True:
     print("\nMessage: ", msg.decode())
 
     if(msg.decode() == 'UPTIME'):
-        print("Current Time = ", (datetime.now() - start))
+        udp.sendto(("Current Time = " + str((datetime.now() - start))).encode(), cliente)
     elif(msg.decode() == 'REQNUM'):
-        print("Connectios = ", contRequests)
+        udp.sendto(("Connectios = " + str(contRequests)).encode(), cliente)
     elif(msg.decode() == 'CLOSE'):
         print('Finishing connection...\n')
         print('\nWaiting connection...')
