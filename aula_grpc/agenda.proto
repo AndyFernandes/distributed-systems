@@ -1,0 +1,22 @@
+syntax = "proto2";
+package helloworld;
+
+service Greeter {
+	rpc AddContato (Contato) returns (Reply) {}
+	rpc ListarContatos (Request) returns (Lista) {}
+}
+
+message Request {
+	required string name = 1;
+}
+message Reply {
+	required string message = 1;
+}
+message Contato {
+	required string nome = 1;
+	required string telefone = 2;
+	required int32 idade = 3;
+}
+message Lista {
+	repeated Contato lista = 1;
+}
